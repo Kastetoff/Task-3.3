@@ -1,9 +1,7 @@
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.Scanner;
 
-public class Basket {
+public class Basket implements Serializable {
     protected String[] productName;
     protected int[] productPrice;
     protected int[] list;
@@ -24,6 +22,7 @@ public class Basket {
             list[productNum] += amount;
             sum += (productPrice[productNum]) * amount;
             saveTxt(new File("src/basket.txt"));
+            saveBin(new File("src/basket.bin"));
             System.out.println(productName[productNum] + " в количестве " + amount + " " + " - добавлено в корзину");
         }
     }
@@ -33,7 +32,7 @@ public class Basket {
         System.out.println("Ваша корзина: ");
         for (int i = 0; i < productName.length; i++) {
             if (list[i] != 0) {
-                System.out.println(productName[i] + " - " + list[i] + " " + " по " + productPrice[i] + " руб / ");
+                System.out.println(productName[i] + " - " + list[i] + " " + " по " + productPrice[i] + " руб");
                 System.out.println("\t\t на сумму " + list[i] * productPrice[i] + " руб");
             }
         }
@@ -71,12 +70,27 @@ public class Basket {
                 Basket basket = new Basket();
                 basket.productName = productName;
                 basket.list = list;
-                System.out.println("Корзина восстановлена!");
                 return basket;
             }
         } else {
-            System.out.println("Корзина не найдена!");
+            System.out.println("Корзина не найдена! (txt)");
             return null;
         }
+    }
+
+    public void saveBin(File binFile) throws IOException {
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(binFile))) {
+            out.writeObject(this);
+        }
+    }
+
+    public static Basket loadFromBinFile(File binFile) throws IOException, ClassNotFoundException {
+        if (binFile.exists()) {
+            try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(binFile))) {
+                return (Basket) in.readObject();
+            }
+        } else
+            System.out.println("Корзина не найдена! (bin)");
+        return null;
     }
 }
