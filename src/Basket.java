@@ -21,8 +21,8 @@ public class Basket implements Serializable {
         if (!(amount < 0 || productNum > productName.length || productNum < 0)) {
             list[productNum] += amount;
             sum += (productPrice[productNum]) * amount;
-            saveTxt(new File("src/basket.txt"));
-            saveBin(new File("src/basket.bin"));
+            saveTxt(new File("Basket/basket.txt"));
+            saveBin(new File("Basket/basket.bin"));
             System.out.println(productName[productNum] + " в количестве " + amount + " " + " - добавлено в корзину");
         }
     }

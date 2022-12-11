@@ -20,8 +20,8 @@ public class Main {
         basket.addToCart(0, 2);
         basket.printCart();
 
-        Basket loadedBasket1 = Basket.loadFromTxtFile(new File("src/basket.txt"));
+        Basket loadedBasket1 = Basket.loadFromTxtFile(new File("Basket/basket.txt"));
 
-        Basket loadedBasket2 = Basket.loadFromBinFile(new File("src/basket.bin"));
+        Basket loadedBasket2 = Basket.loadFromBinFile(new File("Basket/basket.bin"));
     }
 }
