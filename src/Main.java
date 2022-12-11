@@ -20,6 +20,6 @@ public class Main {
 //        basket.addToCart(0, 2);
 //        basket.printCart();
 
-        Basket loadedBasket = Basket.loadFromTxtFile(new File("src/basket.txt"));
+        Basket loadedBasket = Basket.loadFromTxtFile(new File("Basket/basket.txt"));
     }
 }

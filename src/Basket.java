@@ -23,7 +23,7 @@ public class Basket {
         if (!(amount < 0 || productNum > productName.length || productNum < 0)) {
             list[productNum] += amount;
             sum += (productPrice[productNum]) * amount;
-            saveTxt(new File("src/basket.txt"));
+            saveTxt(new File("Basket/basket.txt"));
             System.out.println(productName[productNum] + " в количестве " + amount + " " + " - добавлено в корзину");
         }
     }
